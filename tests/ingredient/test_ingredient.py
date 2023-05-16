@@ -1,6 +1,19 @@
-from src.models.ingredient import Ingredient  # noqa: F401, E261, E501
+from src.models.ingredient import (
+    Ingredient,
+    Restriction,
+)  # noqa: F401, E261, E501
 
 
-# Req 1
 def test_ingredient():
-    pass
+    egg = Ingredient("ovo")
+    assert egg.name == "ovo"
+    assert egg.restrictions == {Restriction.ANIMAL_DERIVED}
+    assert repr(egg) == "Ingredient('ovo')"
+
+    second_egg = Ingredient("ovo")
+    assert egg.__hash__() == second_egg.__hash__()
+    assert egg == second_egg
+
+    chicken = Ingredient("frango")
+    assert egg.__hash__() != chicken.__hash__()
+    assert egg != chicken
