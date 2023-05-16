@@ -2,7 +2,6 @@ import pandas as pd
 
 from services.inventory_control import InventoryMapping
 from services.menu_data import MenuData
-from src.models.ingredient import Restriction
 
 
 DATA_PATH = "data/menu_base_data.csv"
