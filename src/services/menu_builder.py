@@ -2,6 +2,8 @@ import pandas as pd
 
 from services.inventory_control import InventoryMapping
 from services.menu_data import MenuData
+from src.models.ingredient import Restriction
+
 
 DATA_PATH = "data/menu_base_data.csv"
 INVENTORY_PATH = "data/inventory_base_data.csv"
@@ -24,6 +26,24 @@ class MenuBuilder:
 
         self.inventory.consume_recipe(curr_dish.recipe)
 
-    # Req 4
     def get_main_menu(self, restriction=None) -> pd.DataFrame:
-        pass
+        dishes = self.menu_data.dishes
+        dishes_list = []
+        for dish in dishes:
+            ingredients = [ingredient for ingredient in dish.recipe]
+            restrictions = [
+                restriction
+                for ingredient in dish.recipe
+                for restriction in ingredient.restrictions
+            ]
+            if restriction not in restrictions:
+                dish_dict = {
+                    "dish_name": dish.name,
+                    "price": dish.price,
+                    "ingredients": ingredients,
+                    "restrictions": restrictions,
+                }
+                dishes_list.append(dish_dict)
+
+        df = pd.DataFrame(dishes_list)
+        return df
