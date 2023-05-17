@@ -1,5 +1,9 @@
 <h1 align="center">Pedidos de restaurantes</h1>
 
+
+https://github.com/lucas-da-silva/restaurant-orders/assets/104774396/0c22d7fe-00b1-46de-b9e0-fb90c3d04e25
+
+
 ## Sobre o projeto
 
 Aplicação que gera cardápios a partir de arquivos `.csv`, que contém receitas e ingredientes.
